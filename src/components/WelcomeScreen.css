@@ -1,0 +1,277 @@
+.welcome-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+  overflow-y: auto;
+}
+
+.welcome-content {
+  max-width: 600px;
+  width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Header */
+.welcome-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.welcome-logo {
+  margin-bottom: 8px;
+}
+
+.logo-icon {
+  font-size: 64px;
+  display: block;
+}
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--vscode-editor-foreground);
+}
+
+.welcome-subtitle {
+  font-size: 14px;
+  margin: 0;
+  color: var(--vscode-descriptionForeground);
+  opacity: 0.8;
+}
+
+/* Sections */
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--vscode-editor-foreground);
+}
+
+.section-subtitle {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--vscode-descriptionForeground);
+}
+
+/* Primary Action Button */
+.primary-action-btn {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.primary-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.primary-action-btn:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  font-size: 18px;
+}
+
+/* Recent Projects */
+.recent-projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recent-project-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--vscode-list-hoverBackground);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.recent-project-item.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.recent-project-item:hover {
+  background-color: var(--vscode-list-activeSelectionBackground);
+  transform: translateX(4px);
+}
+
+.project-icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.project-arrow {
+  font-size: 1.2rem;
+  color: #888;
+  margin-left: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.recent-project-item:hover .project-arrow {
+  opacity: 1;
+}
+
+.project-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--vscode-editor-foreground);
+}
+
+.project-path {
+  font-size: 12px;
+  color: var(--vscode-descriptionForeground);
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+/* Quick Actions */
+.welcome-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--vscode-button-foreground);
+  background-color: var(--vscode-button-secondaryBackground);
+  border: 1px solid var(--vscode-button-border);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+.action-btn .btn-icon {
+  font-size: 16px;
+}
+
+/* Light Theme Adjustments */
+.welcome-screen.light {
+  background-color: #ffffff;
+}
+
+.welcome-screen.light .welcome-title {
+  color: #1e1e1e;
+}
+
+.welcome-screen.light .welcome-subtitle {
+  color: #616161;
+}
+
+.welcome-screen.light .section-title {
+  color: #1e1e1e;
+}
+
+.welcome-screen.light .section-subtitle {
+  color: #616161;
+}
+
+.welcome-screen.light .recent-project-item {
+  background-color: #f3f3f3;
+}
+
+.welcome-screen.light .recent-project-item:hover {
+  background-color: #e8e8e8;
+}
+
+.welcome-screen.light .project-name {
+  color: #1e1e1e;
+}
+
+.welcome-screen.light .project-path {
+  color: #616161;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .welcome-content {
+    padding: 24px 16px;
+    gap: 24px;
+  }
+
+  .welcome-title {
+    font-size: 24px;
+  }
+
+  .logo-icon {
+    font-size: 48px;
+  }
+
+  .welcome-actions {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.welcome-screen {
+  animation: fadeIn 0.4s ease;
+}

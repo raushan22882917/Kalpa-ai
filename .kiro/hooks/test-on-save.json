@@ -1,0 +1,13 @@
+{
+  "name": "Run Tests on Save",
+  "description": "Automatically run relevant tests when service or component files are saved",
+  "trigger": {
+    "type": "onFileSave",
+    "filePattern": "**/*.{ts,tsx}"
+  },
+  "action": {
+    "type": "command",
+    "command": "npm run test -- --run --reporter=verbose ${filePath}"
+  },
+  "enabled": true
+}

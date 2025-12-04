@@ -1,0 +1,69 @@
+{
+  "name": "Project Standards",
+  "description": "Standards and guidelines for the AI-powered VS Code Web Editor project",
+  "techStack": {
+    "frontend": ["React 18", "TypeScript", "Vite"],
+    "editor": ["Monaco Editor"],
+    "backend": ["Node.js", "Express", "WebSocket"],
+    "ai": ["OpenAI", "Anthropic", "Gemini", "Groq", "Ollama"],
+    "terminal": ["node-pty"],
+    "devices": ["ADB", "libimobiledevice"],
+    "testing": ["Vitest", "fast-check"]
+  },
+  "codeStyle": {
+    "typescript": {
+      "strictTypeChecking": true,
+      "preferInterfaces": true,
+      "useAsyncAwait": true,
+      "exportTypes": true
+    },
+    "react": {
+      "useFunctionalComponents": true,
+      "useHooks": true,
+      "singlePurposeComponents": true,
+      "extractCustomHooks": true
+    },
+    "services": {
+      "singleResponsibility": true,
+      "dependencyInjection": true,
+      "errorHandling": true,
+      "jsDocComments": true
+    }
+  },
+  "architecture": {
+    "fileOrganization": {
+      "components": "React UI components",
+      "services": "Business logic and API clients",
+      "extensions": "VS Code-style extensions",
+      "data": "Static data and configurations",
+      "types": "TypeScript type definitions",
+      "utils": "Utility functions"
+    },
+    "stateManagement": {
+      "localState": "React hooks",
+      "sharedState": "Context API",
+      "persistence": "localStorage",
+      "offlineSupport": true
+    }
+  },
+  "testing": {
+    "propertyBased": true,
+    "coverageTarget": 80,
+    "testErrorPaths": true,
+    "mockExternalDeps": true,
+    "integrationTests": true
+  },
+  "security": {
+    "apiKeys": "environment variables only",
+    "fileSystemAccess": "validate and sanitize",
+    "terminalExecution": "sandboxed environment",
+    "rateLimiting": true
+  },
+  "performance": {
+    "codeSplitting": true,
+    "lazyLoading": true,
+    "treeShaking": true,
+    "virtualizeList": true,
+    "debounceOperations": true
+  }
+}

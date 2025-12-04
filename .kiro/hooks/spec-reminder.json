@@ -1,0 +1,13 @@
+{
+  "name": "Spec-Driven Development Reminder",
+  "description": "Remind to create specs for new features",
+  "trigger": {
+    "type": "onMessage",
+    "pattern": "new feature|add feature|implement.*feature"
+  },
+  "action": {
+    "type": "sendMessage",
+    "message": "Consider creating a spec in .kiro/specs/ with requirements, design, and tasks before implementing this feature. This helps maintain consistency and documentation."
+  },
+  "enabled": true
+}

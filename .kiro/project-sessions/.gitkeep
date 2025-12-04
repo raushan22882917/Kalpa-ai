@@ -1,0 +1,8 @@
+# Project sessions directory
+# This directory stores all AI Project Generator sessions
+# Each session is stored in its own subdirectory with the following structure:
+# - session.json: Session metadata and state
+# - conversation.json: Full conversation history
+# - requirements.md: Generated requirements document
+# - design.md: Generated design document
+# - tasks.md: Generated task list

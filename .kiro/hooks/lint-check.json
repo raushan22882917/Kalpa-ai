@@ -1,0 +1,13 @@
+{
+  "name": "Lint Check on Commit",
+  "description": "Run ESLint and TypeScript checks before allowing commits",
+  "trigger": {
+    "type": "onMessage",
+    "pattern": "commit|push|merge"
+  },
+  "action": {
+    "type": "sendMessage",
+    "message": "Before committing, please run: npm run lint && npm run type-check to ensure code quality"
+  },
+  "enabled": true
+}

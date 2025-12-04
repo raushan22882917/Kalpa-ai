@@ -1,0 +1,503 @@
+.ai-project-chat {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--vscode-panel-border);
+  background-color: var(--vscode-titleBar-activeBackground);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3ECF8E 0%, #2EA7D8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.current-stack {
+  padding: 0.4rem 0.8rem;
+  background-color: var(--vscode-badge-background);
+  color: var(--vscode-badge-foreground);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: var(--vscode-editor-foreground);
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  border-radius: 4px;
+}
+
+.close-button:hover {
+  opacity: 1;
+  background-color: var(--vscode-toolbar-hoverBackground);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  max-width: 80%;
+  animation: slideIn 0.3s ease-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #3ECF8E 0%, #2ECF8E 100%);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.message-assistant {
+  align-self: flex-start;
+  background-color: var(--vscode-input-background);
+  border: 1px solid var(--vscode-input-border);
+  border-bottom-left-radius: 4px;
+}
+
+.message-system {
+  align-self: center;
+  background: linear-gradient(135deg, rgba(62, 207, 142, 0.1) 0%, rgba(46, 167, 216, 0.1) 100%);
+  border: 1px solid rgba(62, 207, 142, 0.3);
+  max-width: 90%;
+  text-align: center;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.message-role {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.message-timestamp {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.message-content {
+  line-height: 1.7;
+  word-wrap: break-word;
+}
+
+.message-content p {
+  margin: 0.5rem 0;
+}
+
+.message-content p:first-child {
+  margin-top: 0;
+}
+
+.message-content p:last-child {
+  margin-bottom: 0;
+}
+
+.message-content strong {
+  font-weight: 700;
+  color: var(--vscode-textLink-foreground);
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.typing-indicator span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--vscode-button-background);
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes typing {
+  0%, 80%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.chat-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--vscode-panel-border);
+  background-color: var(--vscode-input-background);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Quick Options Bar */
+.quick-options-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(62, 207, 142, 0.05) 0%, rgba(46, 167, 216, 0.05) 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(62, 207, 142, 0.2);
+}
+
+.quick-options-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.options-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--vscode-editor-foreground);
+  white-space: nowrap;
+}
+
+.quick-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.quick-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--vscode-button-secondaryBackground);
+  color: var(--vscode-button-secondaryForeground);
+  border: 1px solid var(--vscode-input-border);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.quick-btn:hover:not(:disabled) {
+  background-color: var(--vscode-button-hoverBackground);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.quick-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Theme Selector Compact */
+.theme-selector-compact {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background-color: var(--vscode-input-background);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.theme-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-btn.active {
+  border-color: currentColor;
+  box-shadow: 0 0 0 2px var(--vscode-focusBorder);
+}
+
+.theme-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.theme-color {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: block;
+}
+
+/* Stack Combinations Helper */
+.stack-combinations-helper {
+  margin-bottom: 0.5rem;
+}
+
+.combinations-dropdown {
+  background-color: var(--vscode-editor-background);
+  border: 1px solid var(--vscode-input-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.combinations-dropdown summary {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background-color: var(--vscode-input-background);
+  transition: background-color 0.2s;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.combinations-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.combinations-dropdown summary::before {
+  content: '▶';
+  display: inline-block;
+  transition: transform 0.2s;
+  font-size: 0.7rem;
+}
+
+.combinations-dropdown[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.combinations-dropdown summary:hover {
+  background-color: var(--vscode-list-hoverBackground);
+}
+
+.combinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.combination-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.combination-category h4 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--vscode-textLink-foreground);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--vscode-input-border);
+}
+
+.combination-category button {
+  padding: 0.6rem 0.8rem;
+  background-color: var(--vscode-button-secondaryBackground);
+  color: var(--vscode-button-secondaryForeground);
+  border: 1px solid var(--vscode-input-border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-weight: 500;
+}
+
+.combination-category button:hover {
+  background-color: var(--vscode-button-hoverBackground);
+  border-color: var(--vscode-focusBorder);
+  transform: translateX(4px);
+}
+
+/* Input Area */
+.chat-input-container > .chat-input {
+  flex: 1;
+}
+
+.chat-input {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--vscode-input-background);
+  color: var(--vscode-input-foreground);
+  border: 2px solid var(--vscode-input-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  line-height: 1.5;
+  transition: border-color 0.2s;
+  min-height: 80px;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--vscode-focusBorder);
+  box-shadow: 0 0 0 3px rgba(62, 207, 142, 0.1);
+}
+
+.chat-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.send-button {
+  align-self: flex-end;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #3ECF8E 0%, #2ECF8E 100%);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px 0 rgba(62, 207, 142, 0.3);
+  white-space: nowrap;
+}
+
+.send-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(62, 207, 142, 0.4);
+  background: linear-gradient(135deg, #4EDF9E 0%, #3EDF9E 100%);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Scrollbar styling */
+.chat-messages::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: var(--vscode-scrollbarSlider-background);
+  border-radius: 5px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: var(--vscode-scrollbarSlider-hoverBackground);
+  border-radius: 5px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: var(--vscode-scrollbarSlider-activeBackground);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .message {
+    max-width: 95%;
+  }
+
+  .chat-header {
+    padding: 1rem;
+  }
+
+  .chat-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .chat-messages {
+    padding: 1rem;
+  }
+
+  .chat-input-container {
+    padding: 1rem;
+  }
+
+  .send-button {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* Focus visible styles for accessibility */
+.send-button:focus-visible,
+.chat-input:focus-visible {
+  outline: 2px solid var(--vscode-focusBorder);
+  outline-offset: 2px;
+}

@@ -1,0 +1,332 @@
+.file-explorer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.file-explorer.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #cccccc;
+  --hover-bg: #2a2d2e;
+  --border-color: #3e3e42;
+  --header-bg: #252526;
+  --context-menu-bg: #252526;
+  --context-menu-hover: #094771;
+}
+
+.file-explorer.light {
+  --bg-color: #ffffff;
+  --text-color: #383a42;
+  --hover-bg: #e8e8e8;
+  --border-color: #e5e5e5;
+  --header-bg: #f3f3f3;
+  --context-menu-bg: #ffffff;
+  --context-menu-hover: #0078d4;
+}
+
+.file-explorer {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.file-explorer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.file-explorer-header h3 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.action-button,
+.refresh-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-button:hover,
+.refresh-button:hover {
+  background-color: var(--hover-bg);
+}
+
+.action-button:active,
+.refresh-button:active {
+  transform: scale(0.95);
+}
+
+.file-explorer-tree {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 0;
+}
+
+.tree-node {
+  user-select: none;
+}
+
+.tree-node-label {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree-node-label:hover {
+  background-color: var(--hover-bg);
+}
+
+.tree-node-icon {
+  margin-right: 6px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.tree-node-name {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree-node-children {
+  /* Children are indented via inline styles */
+}
+
+.empty-explorer {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+.empty-explorer p {
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.empty-explorer .hint {
+  font-size: 11px;
+  font-style: italic;
+}
+
+.context-menu {
+  position: fixed;
+  background-color: var(--context-menu-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  min-width: 150px;
+  padding: 4px 0;
+}
+
+.context-menu-item {
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.context-menu-item:hover {
+  background-color: var(--context-menu-hover);
+  color: #ffffff;
+}
+
+.context-menu-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 4px 0;
+}
+
+/* Scrollbar styling */
+.file-explorer-tree::-webkit-scrollbar {
+  width: 10px;
+}
+
+.file-explorer.dark .file-explorer-tree::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+.file-explorer.light .file-explorer-tree::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.file-explorer.dark .file-explorer-tree::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 5px;
+}
+
+.file-explorer.light .file-explorer-tree::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 5px;
+}
+
+.file-explorer-tree::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Workspace Name */
+.workspace-name {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-color);
+  user-select: none;
+}
+
+.workspace-icon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.workspace-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+/* Section Headers */
+.section-header {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  user-select: none;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-color);
+}
+
+.section-header:hover {
+  background-color: var(--hover-bg);
+}
+
+.section-toggle {
+  margin-right: 6px;
+  font-size: 10px;
+  width: 12px;
+  display: inline-block;
+  text-align: center;
+}
+
+.section-title {
+  flex: 1;
+}
+
+.explorer-section .header-actions {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+/* Outline Section */
+.outline-section,
+.timeline-section {
+  border-top: 1px solid var(--border-color);
+}
+
+.outline-tree,
+.timeline-tree {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 0;
+}
+
+.outline-item {
+  user-select: none;
+}
+
+.outline-item-label,
+.outline-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px 4px 24px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  color: var(--text-color);
+}
+
+.outline-item-label:hover,
+.outline-item:hover {
+  background-color: var(--hover-bg);
+}
+
+.outline-item-child {
+  padding-left: 40px;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.outline-icon {
+  margin-right: 6px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.outline-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.outline-children {
+  margin-left: 8px;
+}
+
+.empty-outline,
+.empty-timeline {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-color);
+  opacity: 0.6;
+  font-size: 12px;
+}
+
+.empty-outline p,
+.empty-timeline p {
+  margin: 4px 0;
+}
+
+.empty-outline .hint,
+.empty-timeline .hint {
+  font-size: 11px;
+  font-style: italic;
+}
